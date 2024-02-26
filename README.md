@@ -13,6 +13,13 @@ Install local package {deeptools}
 remotes::install_local("deeptools_0.0.2.tar.gz", dependencies = TRUE)
 ```
 
+Install from GitHub package {deeptools}
+---------------------------------
+
+``` r
+remotes::install_github("DeepSeaSpy/deeptools")
+```
+
 Show report
 -----------
 
