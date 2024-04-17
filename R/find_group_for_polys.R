@@ -13,7 +13,7 @@
 #'
 #' @export
 
-find_groups_in_all_images <- function(x, dist_buffer = 10, .progress = FALSE, workers = future::availableCores(),
+find_groups_in_all_images <- function(x, dist_buffer = 12, .progress = FALSE, workers = future::availableCores(),
                                       keep_list = FALSE, as_sf = FALSE) {
 
   all_ids <- x %>% pull(image_id) %>% unique()
@@ -82,7 +82,7 @@ find_groups_in_all_images <- function(x, dist_buffer = 10, .progress = FALSE, wo
 #'
 #' @export
 
-find_groups_in_image <- function(x, image_id, dist_buffer = 10) {
+find_groups_in_image <- function(x, image_id, dist_buffer = 12) {
 # browser()
   if (missing(image_id)) {
     image_id <- unique(pull(x, image_id))[1]
@@ -126,7 +126,7 @@ find_groups_in_image <- function(x, image_id, dist_buffer = 10) {
         dplyr::select(-image_pol_id) %>%
         distinct() %>%
         group_by(list_ids) %>%
-        arrange(desc(n_pols), desc(n_pixels)) %>%
+        arrange(desc(n_pixels), desc(n_pols)) %>%
         slice(-1) %>%
         pull(group_kept) %>%
         unique()
@@ -170,7 +170,7 @@ find_groups_in_image <- function(x, image_id, dist_buffer = 10) {
 #'
 #' @export
 voronoi_stacker <- function(x,
-                            dist_buffer = 10,
+                            dist_buffer = 12,
                             r_image,
                             image_id) {
 
@@ -231,7 +231,7 @@ voronoi_stacker <- function(x,
 #' @importFrom fasterize fasterize
 #'
 #' @export
-voronoi_rasterize <- function(x, dist_buffer = 10, r_image,
+voronoi_rasterize <- function(x, dist_buffer = 12, r_image,
                               keep_intermediate = FALSE) {
 
   if (!"image_pol_id" %in% names(x)) {
@@ -323,7 +323,7 @@ group_pixels_count <- function(x) {
     # as.data.frame() %>%
     as.matrix() %>%
     as_tibble() %>%
-    filter_all(any_vars(!is.na(.))) %>%
+    filter(if_any(everything(), ~ !is.na(.))) %>% 
     unite(col = grouped_ids, sep = "-", remove = FALSE) %>%
     group_by(grouped_ids) %>%
     summarise(n_pixels = n()) %>%
@@ -364,7 +364,9 @@ find_top_groups <- function(x, all_ids) {
     rename(image_pol_id = list_ids) %>%
     group_by(image_pol_id) %>%
     top_n(1, n_pols) %>%
+    # slice_max(n = 1, order_by = n_pols) %>%
     top_n(1, n_pixels) %>%
+    # slice_max(n = 1, order_by = n_pixels) %>%
     ungroup() %>%
     rename(group_kept = grouped_ids) %>%
     right_join(tibble(all_ids), by = c("image_pol_id" = "all_ids")) %>%
