@@ -4,7 +4,16 @@
 \alias{gg_users_image}
 \title{Draw position of individuals seen by a user on an image}
 \usage{
-gg_users_image(x, image_id, filter_col, filter_val, path, img_name, buffer)
+gg_users_image(
+  x,
+  image_id,
+  filter_col,
+  filter_val,
+  path,
+  img_name,
+  buffer,
+  alpha = 0.7
+)
 }
 \arguments{
 \item{x}{spatial dataframe as issued from \code{\link{to_carto_segment}}}

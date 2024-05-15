@@ -4,8 +4,7 @@
 \alias{voronoi_rasterize}
 \title{Create raster Stack of voronoi and buffer around sf}
 \usage{
-voronoi_rasterize(x, dist_buffer = 10, r_image,
-  keep_intermediate = FALSE)
+voronoi_rasterize(x, dist_buffer = 12, r_image, keep_intermediate = FALSE)
 }
 \arguments{
 \item{x}{sf object for a unique user}

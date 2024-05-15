@@ -4,7 +4,7 @@
 \alias{voronoi_stacker}
 \title{Create raster Stack of voronoi around sf for each image}
 \usage{
-voronoi_stacker(x, dist_buffer = 10, r_image, image_id)
+voronoi_stacker(x, dist_buffer = 12, r_image, image_id)
 }
 \arguments{
 \item{x}{sf object for multiple users with a column named "user_id"}

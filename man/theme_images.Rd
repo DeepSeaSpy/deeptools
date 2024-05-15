@@ -4,8 +4,16 @@
 \alias{theme_images}
 \title{Special ggplot theme for pixel images}
 \usage{
-theme_images(x, fill = "d", color = "d", na.value = "grey50",
-  xmax = 1920, ymax = 1080, reverse_y = TRUE, ...)
+theme_images(
+  x,
+  fill = "d",
+  color = "d",
+  na.value = "grey50",
+  xmax = 1920,
+  ymax = 1080,
+  reverse_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{sf object to get crs from}

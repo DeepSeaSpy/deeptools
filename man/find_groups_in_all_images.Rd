@@ -4,16 +4,29 @@
 \alias{find_groups_in_all_images}
 \title{Find groups in all images}
 \usage{
-find_groups_in_all_images(x, dist_buffer = 10, .progress = FALSE,
-  keep_list = FALSE, as_sf = FALSE)
+find_groups_in_all_images(
+  x,
+  dist_buffer = 12,
+  .progress = FALSE,
+  workers = future::availableCores(),
+  keep_list = FALSE,
+  as_sf = FALSE
+)
 }
 \arguments{
 \item{x}{All image in a sf object}
 
 \item{dist_buffer}{Numeric. Distance of the buffering area. The smaller the better.}
 
-\item{.progress}{A logical, for whether or not to print a progress bar for
-multiprocess, multisession, and multicore plans.}
+\item{.progress}{A single logical. Should a progress bar be displayed?
+Only works with multisession, multicore, and multiprocess futures. Note
+that if a multicore/multisession future falls back to sequential, then
+a progress bar will not be displayed.
+
+\strong{Warning:} The \code{.progress} argument will be deprecated and removed
+in a future version of furrr in favor of using the more robust
+\href{https://CRAN.R-project.org/package=progressr}{progressr}
+package.}
 
 \item{keep_list}{Logical. (debug only) Keep results as list of outputs for all images separated.}
 

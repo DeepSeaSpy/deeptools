@@ -4,7 +4,7 @@
 \alias{find_groups_in_image}
 \title{find_groups_in_image}
 \usage{
-find_groups_in_image(x, image_id, dist_buffer = 10)
+find_groups_in_image(x, image_id, dist_buffer = 12)
 }
 \arguments{
 \item{x}{All image in a sf object}
