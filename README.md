@@ -10,7 +10,7 @@ Install local package {deeptools}
 ---------------------------------
 
 ``` r
-remotes::install_local("deeptools_0.0.3.tar.gz", dependencies = TRUE)
+remotes::install_local("deeptools_0.0.2.tar.gz", dependencies = TRUE)
 ```
 
 Install from GitHub package {deeptools}
