@@ -7,7 +7,7 @@
 \alias{to_carto_polygon}
 \title{Convert data to spatial object with fake crs}
 \usage{
-to_carto(x, col, filter_on, reverse_y = TRUE)
+to_carto(x, filter_col, filter_val, reverse_y = TRUE)
 
 to_carto_segment(x, reverse_y = TRUE)
 
@@ -18,9 +18,9 @@ to_carto_polygon(x, reverse_y = TRUE)
 \arguments{
 \item{x}{Table with at least pos1x, pos1y, pos2x, pos2y columns}
 
-\item{col}{optionnal. column on which to apply a filter}
+\item{filter_col}{optionnal. column on which to apply a filter}
 
-\item{filter_on}{optionnal. value to filter inside col}
+\item{filter_val}{optionnal. value to filter inside filter_col}
 
 \item{reverse_y}{Logical. Reverse y coordinates to be shown like original images}
 }
