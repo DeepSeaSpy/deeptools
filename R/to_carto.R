@@ -4,7 +4,7 @@
 #' @param filter_val optionnal. value to filter inside filter_col
 #' @param reverse_y Logical. Reverse y coordinates to be shown like original images
 #'
-#' @importFrom rlang sym name_as
+#' @importFrom rlang sym as_name
 #' @importFrom dplyr filter
 #'
 #' @export
