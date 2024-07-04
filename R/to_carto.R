@@ -14,24 +14,46 @@ to_carto <- function(x, filter_col, filter_val, reverse_y = TRUE) {
   # Filter
   if (!missing(filter_val) & !missing(filter_col)) {
     col <- sym(filter_col)
-    x_tmp <- x %>%
-      filter(!!col == filter_val)
-    if (nrow(x_tmp) == 0 ) {stop("There is no '", filter_val, "' in column: '", filter_col, "'")}
-  } else {
+    x_tmp <- x %>% filter(!!col == filter_val)
+    if (nrow(x_tmp) == 0) {
+      stop("There is no '", filter_val, "' in column: '", 
+           filter_col, "'")
+    }
+  }
+  else {
     x_tmp <- x
   }
-
-
-  if (all(is.na(x_tmp$pos2x)) & all(x_tmp$polygon_values == "NULL")) {
-    res <- to_carto_point(x_tmp, reverse_y = reverse_y)
-  } else if (!all(is.na(x_tmp$pos2x)) & all(x_tmp$polygon_values == "NULL")) {
-    res <- to_carto_segment(x_tmp, reverse_y = reverse_y)
-  } else if (all(is.na(x_tmp$pos2x)) & !all(x_tmp$polygon_values == "NULL")) {
-    res <- to_carto_polygon(x_tmp, reverse_y = reverse_y)
+  if ("polygon_values" %in% colnames(x_tmp)) {
+    if (all(is.na(x_tmp$pos2x)) & all(x_tmp$polygon_values == 
+                                      "NULL")) {
+      res <- to_carto_point(x_tmp, reverse_y = reverse_y)
+    }
+    else if (!all(is.na(x_tmp$pos2x)) & all(x_tmp$polygon_values == 
+                                            "NULL")) {
+      res <- to_carto_segment(x_tmp, reverse_y = reverse_y)
+    }
+    else if (all(is.na(x_tmp$pos2x)) & !all(x_tmp$polygon_values == 
+                                            "NULL")) {
+      res <- to_carto_polygon(x_tmp, reverse_y = reverse_y)
+    }
+    else {
+      stop("Format of data selected is not uniform among points, segment or polygons")
+    }
   } else {
-    stop("Format of data selected is not uniform among points, segment or polygons")
+    if (all(is.na(x_tmp$pos2x))) {
+      res <- to_carto_point(x_tmp, reverse_y = reverse_y)
+    }
+    else if (!all(is.na(x_tmp$pos2x))) {
+      res <- to_carto_segment(x_tmp, reverse_y = reverse_y)
+    }
+    else if (all(is.na(x_tmp$pos2x))) {
+      res <- to_carto_polygon(x_tmp, reverse_y = reverse_y)
+    }
+    else {
+      stop("Format of data selected is not uniform among points, segment or polygons")
+    }
   }
-
+  
   return(res)
 }
 
