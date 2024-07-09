@@ -79,6 +79,11 @@ mission2 <- readr::read_csv(export_file) %>%
           remove = FALSE
   ) %>%
   mutate(datetime = ymd_hms(datetime, tz = "UTC")) %>%
+  # change coordinates as numeric
+  mutate_at(vars(starts_with("pos"),
+                 starts_with("middle"),
+                 matches("length"),
+                 starts_with("age")), as.numeric) %>%
   # clean names of species
   mutate(name_fr_clean = thinkr::clean_vec(name_fr, unique = FALSE)) %>% 
   group_by(username) %>%

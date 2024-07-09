@@ -5,7 +5,7 @@
 #' @param filter_val optionnal. value to filter inside filter_col
 #' @param reverse_y Logical. Reverse y coordinates to be shown like original images
 #'
-#' @importFrom rlang sym
+#' @importFrom rlang enquo
 #' @importFrom dplyr filter
 #'
 #' @export
@@ -13,11 +13,10 @@ to_carto <- function(x, filter_col, filter_val, reverse_y = TRUE) {
 
   # Filter
   if (!missing(filter_val) & !missing(filter_col)) {
-    col <- sym(filter_col)
+    col <- enquo(filter_col)
     x_tmp <- x %>% filter(!!col == filter_val)
     if (nrow(x_tmp) == 0) {
-      stop("There is no '", filter_val, "' in column: '", 
-           filter_col, "'")
+      stop("There is no '", filter_val, "' in column: '", as.character(filter_col)[2], "'")
     }
   }
   else {
