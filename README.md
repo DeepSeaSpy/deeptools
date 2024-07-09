@@ -8,7 +8,7 @@ Images were analyzed in a game. This package explores the results of the game.
 
 Install local package {deeptools}
 ---------------------------------
-Download ZIP from `<> Code` button and install package from the this archive
+Download ZIP from `<> Code` button and install package from this archive
 ``` r
 remotes::install_local("deeptools-master.zip", dependencies = TRUE)
 ```
