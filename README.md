@@ -8,9 +8,9 @@ Images were analyzed in a game. This package explores the results of the game.
 
 Install local package {deeptools}
 ---------------------------------
-
+Download ZIP from `<> Code` button and install package from the this archive
 ``` r
-remotes::install_local("deeptools_0.0.2.tar.gz", dependencies = TRUE)
+remotes::install_local("deeptools-master.zip", dependencies = TRUE)
 ```
 
 Install from GitHub package {deeptools}
