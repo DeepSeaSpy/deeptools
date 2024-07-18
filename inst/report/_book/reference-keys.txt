@@ -1,3 +1,0 @@
-prerequisites
-install-local-package-deeptools
-list-of-dependencies
