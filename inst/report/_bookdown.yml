@@ -1,7 +1,7 @@
 book_filename: "report"
 delete_merged_file: true
 new_session: false
-output_dir: "docs"
+output_dir: "inst/docs"
 language:
   ui:
     chapter_name: "Chapter "
